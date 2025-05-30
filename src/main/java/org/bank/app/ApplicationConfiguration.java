@@ -1,5 +1,7 @@
 package org.bank.app;
 
+import org.bank.app.account.AccountService;
+import org.bank.app.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +16,19 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public OperationsConsoleListener operationsConsoleListener(Scanner scanner) {
-        return new OperationsConsoleListener(scanner);
+    public OperationsConsoleListener operationsConsoleListener(Scanner scanner,
+                                                               UserService userService,
+                                                               AccountService accountService) {
+        return new OperationsConsoleListener(scanner, userService, accountService);
+    }
+
+    @Bean
+    public UserService userService(AccountService accountService) {
+        return new UserService(accountService);
+    }
+
+    @Bean
+    public AccountService accountService() {
+        return new AccountService();
     }
 }

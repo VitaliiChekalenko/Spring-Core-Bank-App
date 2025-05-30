@@ -1,13 +1,22 @@
 package org.bank.app;
 
+import org.bank.app.account.AccountService;
+import org.bank.app.user.UserService;
+
 import java.util.Scanner;
 
 public class OperationsConsoleListener {
 
-private Scanner scanner;
+    private Scanner scanner;
+    private final AccountService accountService;
+    private final UserService userService;
 
-    public OperationsConsoleListener(Scanner scanner) {
+    public OperationsConsoleListener(Scanner scanner,
+                                     UserService userService,
+                                     AccountService accountService) {
         this.scanner = scanner;
+        this.accountService = accountService;
+        this.userService = userService;
     }
 
     public void listenUpdates() {
